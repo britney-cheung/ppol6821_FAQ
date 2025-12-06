@@ -57,6 +57,8 @@ A: Even if everything is done correctly, this can be a standard issue. Your mode
 
 **Q: My loss isn't decreasing at all. What could be wrong?**
 
+A: There are a variety of reasons why this may be happening, although a very common one is that the learning rate is set too high. When this happens, the model updates its parameters in steps that are too big, such that it "overshoots". Instead of gradually descending down the loss function, the loss becomes flat or erratic because the model is stuck in a ping pong motion and cannot get close enough to the global minimum. Try lowering the learning rate slightly, which will hopefully give the optimizer a smoother, more stable path down the loss landscape. 
+
 ---
 
 ## Implementation Issues
@@ -76,6 +78,11 @@ A: There is no right architectre, this depends on your context, use case and obj
 ### Hyperparameter Tuning
 
 **Q: How should I tune hyperparameters?**
+
+A: Hyperparameter tuning is also heavily dependent on context. Best practice is to start with the most standard, baseline version of your model, evaluate its performance on the metric(s) you care about (e.g. test accuracy is most common). From there, you can iteratively adjust your hyperparameters and test whether your changes move that metric. This ensures that you understand which changes are meaningfully improving your model and which ones are introducing unecessary complexity. 
+
+Examples of hyperparameters you might tune include learning rate, number of layers, batch size, dropout rate. There are hyperparameters specific to certain model architectures as well: filter sizes, padding, and pooling strategies for CNNs; sequence lengths and the direction of your recurrent layers for RNNs; the number of attenton heads in Transformers.  
+
 
 ### Reproducibility
 
